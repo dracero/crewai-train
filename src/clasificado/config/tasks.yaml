@@ -1,0 +1,30 @@
+clasificacion_task:
+  description: >
+    Clasifica el siguiente tópico:
+    '{topico}'
+    Responde EXACTAMENTE con una palabra:
+    'administrativo' o 'no administrativo'.
+  expected_output: >
+    Una clasificación del tópico como 'administrativo' o 'no administrativo'.
+  agent: clasificador_agent
+
+admin_task:
+  description: >
+    Procesa el siguiente tópico administrativo:
+    '{topico}'
+    Utiliza las herramientas necesarias para generar una confirmación clara.
+  expected_output: >
+    Confirmación de que el tópico administrativo ha sido procesado correctamente,
+    incluyendo la salida del Tavily y el tópico procesado.
+  agent: administrativo_agent
+
+tech_task:
+  description: >
+    Procesa el siguiente tópico técnico:
+    '{topico}'
+    Utiliza las herramientas necesarias para generar una confirmación clara.
+  expected_output: >
+    Confirmación de que el tópico técnico ha sido procesado correctamente,
+    incluyendo la salida del Tavily y el tópico procesado.
+  agent: tecnico_agent
+

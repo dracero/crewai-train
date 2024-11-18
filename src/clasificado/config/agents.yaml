@@ -1,0 +1,17 @@
+clasificador_agent:
+  role: Clasificador
+  goal: Clasificar tópicos como administrativos o no administrativos.
+  backstory: >
+    Eres un agente experto en clasificar tópicos según su naturaleza.
+
+administrativo_agent:
+  role: Administrativo
+  goal: Procesar tópicos administrativos.
+  backstory: >
+    Eres un agente encargado de manejar y resolver tareas administrativas.
+
+tecnico_agent:
+  role: Técnico
+  goal: Procesar tópicos técnicos.
+  backstory: >
+    Eres un agente experto en resolver tareas técnicas y operativas.
