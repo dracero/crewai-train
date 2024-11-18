@@ -62,23 +62,3 @@ def test():
     except Exception as e:
         raise Exception(f"An error occurred while testing the crew: {e}")
 
-# Ejemplo de uso
-if __name__ == "__main__":
-    print("Seleccione una acción:")
-    print("1. Ejecutar (run)")
-    print("2. Entrenar (train)")
-    print("3. Reproducir (replay)")
-    print("4. Probar (test)")
-    
-    opcion = input("Ingrese el número de la acción: ").strip()
-    
-    if opcion == "1":
-        run()
-    elif opcion == "2":
-        train()
-    elif opcion == "3":
-        replay()
-    elif opcion == "4":
-        test()
-    else:
-        print("Opción no válida. Por favor, seleccione una opción entre 1 y 4.")

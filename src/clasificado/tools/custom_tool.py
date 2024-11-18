@@ -1,6 +1,14 @@
 from crewai_tools import BaseTool, tool
 from typing import Type
 from pydantic import BaseModel, Field
+from langchain_community.tools.tavily_search import TavilySearchResults
+import os
+from dotenv import load_dotenv
+import os
+
+# Cargar las variables de entorno del archivo .env
+load_dotenv()
+
 
 # Tool para procesar tópicos administrativos
 class ProcesarAdministrativoInput(BaseModel):
@@ -21,6 +29,8 @@ class ProcesarAdministrativoTool(BaseTool):
     args_schema: Type[BaseModel] = ProcesarAdministrativoInput
 
     def _run(self, topico: dict) -> str:
+        search_tool = TavilySearchResults(api_key=os.environ["TAVILY_API_KEY"])
+        results = search_tool.invoke(str(topico))
         return f"Agente Administrativo: Procesando tópico administrativo - '{topico}'"
 
 # Tool para procesar tópicos técnicos
