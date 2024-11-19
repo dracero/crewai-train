@@ -28,26 +28,27 @@ def run():
 
 def train():
     """
-    Train the crew for a given number of iterations.
+    Train the crew with user-specified parameters.
     """
-    inputs = {
-        "topic": input("Ingrese el tema para entrenamiento: ")
-    }
     try:
-        Clasificado().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
-
+        inputs = {
+            "topico": input("Ingrese el tema para entrenamiento: ")
+        }
+        clasificado = Clasificado()
+        clasificado.train(inputs=inputs)
     except Exception as e:
-        raise Exception(f"An error occurred while training the crew: {e}")
+        print(f"Error durante el entrenamiento: {e}")
 
 def replay():
     """
-    Replay the crew execution from a specific task.
+    Replay the crew execution for a specific task ID.
     """
     try:
-        Clasificado().crew().replay(task_id=sys.argv[1])
-
+        task_id = input("Ingrese el ID de la tarea para reproducir: ")
+        clasificado = Clasificado()
+        clasificado.replay(task_id=task_id)
     except Exception as e:
-        raise Exception(f"An error occurred while replaying the crew: {e}")
+        print(f"Error durante la reproducción: {e}")
 
 def test():
     """

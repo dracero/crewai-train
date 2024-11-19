@@ -8,7 +8,7 @@ clasificacion_task:
     Una clasificación del tópico como 'administrativo' o 'no administrativo'.
   agent: clasificador_agent
 
-admin_task:
+administrativo_task:
   description: >
     Procesa el siguiente tópico administrativo:
     '{topico}'
@@ -18,7 +18,7 @@ admin_task:
     incluyendo la salida del Tavily y el tópico procesado.
   agent: administrativo_agent
 
-tech_task:
+tecnico_task:
   description: >
     Procesa el siguiente tópico técnico:
     '{topico}'

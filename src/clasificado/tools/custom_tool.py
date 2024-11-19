@@ -31,7 +31,7 @@ class ProcesarAdministrativoTool(BaseTool):
     def _run(self, topico: dict) -> str:
         search_tool = TavilySearchResults(api_key=os.environ["TAVILY_API_KEY"])
         results = search_tool.invoke(str(topico))
-        return f"Agente Administrativo: Procesando tópico administrativo - '{topico}'"
+        return f"Agente Administrativo: Procesando tópico administrativo - '{results}'"
 
 # Tool para procesar tópicos técnicos
 class ProcesarTecnicoInput(BaseModel):
@@ -52,5 +52,7 @@ class ProcesarTecnicoTool(BaseTool):
     args_schema: Type[BaseModel] = ProcesarTecnicoInput
 
     def _run(self, topico: dict) -> str:
-        return f"Agente Técnico: Procesando tópico técnico - '{topico}'"
+        search_tool = TavilySearchResults(api_key=os.environ["TAVILY_API_KEY"])
+        results = search_tool.invoke(str(topico))
+        return f"Agente Técnico: Procesando tópico técnico - '{results}'"
 

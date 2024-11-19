@@ -1,6 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from clasificado.tools.custom_tool import ProcesarAdministrativoTool, ProcesarTecnicoTool
+import json
 
 @CrewBase
 class Clasificado:
@@ -106,7 +107,48 @@ class Clasificado:
                 resultados.append(f"Error en la clasificación del tópico: {topico}")
 
         return resultados
+    
+    def train(self,inputs: dict):
+        print("Tareas disponibles:", self.tasks_config.keys())  # Depuración
 
+        resultados_entrenamiento = []
+        print(f"Iniciando iteración")
+        result = self.crew().kickoff(inputs=inputs)
+        resultados_entrenamiento.append(result)
+
+
+    def replay(self, task_id: str):
+        """
+        Reproduce la ejecución de una tarea específica por su ID.
+        """
+        # Asegurarse de tener un mecanismo para guardar y recuperar ejecuciones
+        log_file = "execution_log.json"
+        if not os.path.exists(log_file):
+            print("No se encontró un archivo de registro de ejecuciones.")
+            return
+
+        with open(log_file, 'r') as file:
+            execution_logs = json.load(file)
+
+        task_execution = next((log for log in execution_logs if log.get("task_id") == task_id), None)
+        if not task_execution:
+            print(f"No se encontró una tarea con ID {task_id}.")
+            return
+
+        # Reproducir la tarea (esto es conceptual y depende de cómo se manejan los logs)
+        print(f"Reproduciendo tarea con ID {task_id}: {task_execution}")
+        return task_execution
+
+    def test(self, n_iterations: int, openai_model_name: str, inputs: dict):
+        """
+        Prueba la ejecución del crew con los parámetros dados.
+        """
+        print(f"Probando el crew con {n_iterations} iteraciones y modelo {openai_model_name}...")
+        for i in range(n_iterations):
+            print(f"Iniciando prueba {i + 1}...")
+            result = self.crew().kickoff(inputs=inputs)
+            print(f"Resultado de la prueba {i + 1}: {result}")
+    
     @crew
     def crew(self) -> Crew:
         """Creates the Clasificado crew"""
@@ -116,3 +158,4 @@ class Clasificado:
             process=Process.sequential,
             verbose=True
         )
+    
