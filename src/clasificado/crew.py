@@ -60,7 +60,8 @@ class Clasificado:
             clasificacion_task = Task(
                 description=f"""Clasifica el siguiente tópico: '{topico}'
                 Responde EXACTAMENTE con una palabra:
-                'administrativo' o 'no administrativo'.""",
+                'administrativo' o 'no administrativo'.
+                Si no es una consulta ni administrativa ni técnica, responde 'error'. Por ejemplo cuando alguien saluda o pregunta por el clima.""",
                 agent=self.clasificador_agent(),
                 expected_output="Clasificación del tópico como 'administrativo' o 'no administrativo'"
             )
